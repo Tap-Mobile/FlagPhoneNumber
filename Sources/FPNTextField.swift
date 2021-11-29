@@ -153,6 +153,11 @@ open class FPNTextField: UITextField {
         NSLayoutConstraint(item: phoneCodeTextField, attribute: .trailing, relatedBy: .equal, toItem: leftView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: phoneCodeTextField, attribute: .top, relatedBy: .equal, toItem: leftView, attribute: .top, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: phoneCodeTextField, attribute: .bottom, relatedBy: .equal, toItem: leftView, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
+        
+        let selectButton = UIButton(type: .custom)
+        selectButton.frame = CGRect(origin: .zero, size: leftViewSize)
+        leftView?.addSubview(selectButton)
+        selectButton.addTarget(self, action: #selector(displayCountries), for: .touchUpInside)
     }
 
     open override func updateConstraints() {
@@ -457,4 +462,3 @@ open class FPNTextField: UITextField {
         }
     }
 }
-
