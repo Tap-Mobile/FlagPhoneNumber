@@ -112,6 +112,7 @@ open class FPNTextField: UITextField {
         } else {
             setFlag(countryCode: FPNCountryCode.FR)
         }
+        setupCountryButton()
     }
 
     private func setupFlagButton() {
@@ -120,6 +121,13 @@ open class FPNTextField: UITextField {
         flagButton.addTarget(self, action: #selector(displayCountries), for: .touchUpInside)
         flagButton.translatesAutoresizingMaskIntoConstraints = false
         flagButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+    }
+    
+    private func setupCountryButton() {
+        let countryButton = UIButton(frame: CGRect(x: 0, y: 0, width: 90, height: 40))
+        countryButton.isUserInteractionEnabled = true
+        countryButton.addTarget(self, action: #selector(displayCountries), for: .touchUpInside)
+        leftView?.addSubview(countryButton)
     }
 
     private func setupPhoneCodeTextField() {
@@ -153,11 +161,6 @@ open class FPNTextField: UITextField {
         NSLayoutConstraint(item: phoneCodeTextField, attribute: .trailing, relatedBy: .equal, toItem: leftView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: phoneCodeTextField, attribute: .top, relatedBy: .equal, toItem: leftView, attribute: .top, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: phoneCodeTextField, attribute: .bottom, relatedBy: .equal, toItem: leftView, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
-        
-        let selectButton = UIButton(type: .custom)
-        selectButton.frame = CGRect(origin: .zero, size: leftViewSize)
-        leftView?.addSubview(selectButton)
-        selectButton.addTarget(self, action: #selector(displayCountries), for: .touchUpInside)
     }
 
     open override func updateConstraints() {
